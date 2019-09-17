@@ -1,0 +1,19 @@
+.listCard {
+  &__upper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+  }
+
+  &__lower {
+    &--schedule {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin-right: 10px;
+      }
+    }
+  }
+}
