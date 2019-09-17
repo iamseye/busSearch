@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SearchBox from '../components/searchBox.js'
 import ListCard from '../components/listCard.js'
 import Api from '../utils/api.js'
+import Utils from '../utils/utils.js'
 import '../styles/search.scss'
 
 class Search extends Component {
@@ -18,7 +19,9 @@ class Search extends Component {
         adult: 1
       },
       searchResult: {
-        departures: []
+        locations: [],
+        departures: [],
+        operators: []
       }
     }
   }
@@ -30,6 +33,18 @@ class Search extends Component {
       })
   }
 
+  getLocationData = (locatoinId) => {
+    return this.state.searchResult.locations.find(item =>
+      item.id === locatoinId
+    )
+  }
+
+  getOperatorData = (operatorId) => {
+    return this.state.searchResult.operators.find(item =>
+      item.id === operatorId
+    )
+  }
+
   render() {
     return (
       <div className="search">
@@ -37,8 +52,13 @@ class Search extends Component {
           clickSearch={this.clickSearch}
         />
         { this.state.searchResult.departures.map((item, i) => (
-          <ListCard
-
+          <ListCard key={i}
+            price={item.prices.total}
+            departureTime={Utils.getLocalTime(item.departure_time, item.departure_timezone)}
+            arrivalTime={Utils.getLocalTime(item.arrival_time, item.arrival_timezone)}
+            departureStation={this.getLocationData(item.origin_location_id)}
+            arrivalStation={this.getLocationData(item.destination_location_id)}
+            operator={this.getOperatorData(item.operator_id)}
           />
         ))}
       </div>

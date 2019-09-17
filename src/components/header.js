@@ -4,7 +4,7 @@ import '../styles/header.scss';
 const Header = () => (
   <header className="header">
     <h3>
-      BUS SHARE MAP
+      Osheaga festival! 
     </h3>
   </header>
 );

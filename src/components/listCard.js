@@ -4,17 +4,17 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import '../styles/list.scss';
 
-const ListCard = () => (
+const ListCard = (props) => (
   <Card className="listCard">
     <CardContent>
       <div className="listCard__upper">
         <div>
           <Typography color="textSecondary" gutterBottom>
-            Greyhund
+            {props.operator.name}
           </Typography>
         </div>
         <div className="listCard__upper--price">
-          CAD $109
+          CAD ${props.price}
         </div>
       </div>
 
@@ -24,7 +24,7 @@ const ListCard = () => (
             Depart
           </Typography>
           <Typography variant="h5" component="h2">
-            11:45pm Montreal -- Gare d'autocars
+            {props.departureTime} at {props.departureStation.name}
           </Typography>
         </div>
 
@@ -33,7 +33,7 @@ const ListCard = () => (
             Arrive
           </Typography>
           <Typography variant="h5" component="h2">
-            9:05am New York -- Brooklyn Downtown
+            {props.arrivalTime}  at {props.arrivalStation.name}
           </Typography>
         </div>
       </div>
