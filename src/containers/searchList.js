@@ -9,7 +9,6 @@ class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchAction: false,
       searchAttribute: {
         departCity: 'dr5reg',
         arriveCity: 'f25dvk',
@@ -29,7 +28,7 @@ class Search extends Component {
   clickSearch = () => {
     Api.searchBus(this.state.searchAttribute, this.state.searchParams)
       .then(res => {
-        this.setState({ searchResult: res.data, searchAction: true })
+        this.setState({ searchResult: res.data })
         return res.data;
       }).then(res => {
           if (!res.complete) {
@@ -47,11 +46,12 @@ class Search extends Component {
 
     Api.searchPoll(this.state.searchAttribute, this.state.searchParams)
       .then(res => {
-        this.setState({
-           searchResult: {
-            departures: [...this.state.searchResult.departures, ...res.data.departures]
-          }
-        })
+        this.setState( prevState => ({
+           searchResult: {...prevState.searchResult,
+             departures: [...prevState.searchResult.departures, res.data.departures],
+             locations: [...prevState.searchResult.locations, res.data.locations],
+             operators: [...prevState.searchResult.operators, res.data.operators] }
+        }))
 
         if (res.complete) {
           clearInterval()
