@@ -12,12 +12,15 @@ const instance = axios.create({
 
 const api = {
   searchBus : async (attributes, params) => {
-    console.log(params);
-    const response =
-      await instance.get('/' + attributes.departCity + '/' + attributes.arriveCity + '/' + attributes.searchDate, {
+    return await instance.get('/' + attributes.departCity + '/' + attributes.arriveCity + '/' + attributes.searchDate, {
+      params: params
+    });
+  },
+  searchPoll: async (attributes, params) => {
+    return await instance.get('/' + attributes.departCity + '/'
+      + attributes.arriveCity + '/' + attributes.searchDate + '/poll', {
         params: params
       });
-    return response;
   }
 };
 

@@ -30,6 +30,32 @@ class Search extends Component {
     Api.searchBus(this.state.searchAttribute, this.state.searchParams)
       .then(res => {
         this.setState({ searchResult: res.data, searchAction: true })
+        return res.data;
+      }).then(res => {
+          if (!res.complete) {
+            setInterval(
+              this.getMoreData(this.state.searchResult.departures.length)
+            , 2000)
+          }
+      })
+  }
+
+  getMoreData = (index) => {
+    this.setState({
+       searchParams: {...this.state.searchParams, ...{ index: index }}
+    })
+
+    Api.searchPoll(this.state.searchAttribute, this.state.searchParams)
+      .then(res => {
+        this.setState({
+           searchResult: {
+            departures: [...this.state.searchResult.departures, ...res.data.departures]
+          }
+        })
+
+        if (res.complete) {
+          clearInterval()
+        }
       })
   }
 
