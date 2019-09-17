@@ -1,11 +1,14 @@
+
+@import '_mixins';
+@import '_variables';
+
 .listCard {
-  margin: 10px;
+  margin: 15px;
 
   &__upper {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
   }
 
   &__lower {
@@ -15,6 +18,10 @@
 
       p {
         margin-right: 10px;
+      }
+
+      span {
+        color: $color-blue;
       }
     }
   }

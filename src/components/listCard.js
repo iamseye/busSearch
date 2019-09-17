@@ -14,7 +14,7 @@ const ListCard = (props) => (
           </Typography>
         </div>
         <div className="listCard__upper--price">
-          CAD ${props.price}
+          {props.price}
         </div>
       </div>
 
@@ -24,7 +24,7 @@ const ListCard = (props) => (
             Depart
           </Typography>
           <Typography variant="h5" component="h2">
-            {props.departureTime} at {props.departureStation.name}
+            <span>{props.departureTime}</span> at {props.departureStation.name}
           </Typography>
         </div>
 
@@ -33,7 +33,7 @@ const ListCard = (props) => (
             Arrive
           </Typography>
           <Typography variant="h5" component="h2">
-            {props.arrivalTime}  at {props.arrivalStation.name}
+            <span>{props.arrivalTime}</span>  at {props.arrivalStation.name}
           </Typography>
         </div>
       </div>
