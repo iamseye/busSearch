@@ -1,15 +1,13 @@
 import React from 'react';
 import './App.scss';
 import Header from './components/header.js';
-import Search from './containers/search.js';
-import List from './containers/list.js';
+import SearchList from './containers/searchList.js';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Search />
-      <List />
+      <SearchList />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import '../styles/search.scss';
 
-const SearchBox = () => (
+const SearchBox = props => (
   <div className="searchBox">
     <TextField
       disabled
@@ -27,7 +27,11 @@ const SearchBox = () => (
       defaultValue="2020-08-02"
       margin="normal"
     />
-    <Button variant="contained" color="primary" className="searchBox__button">
+    <Button
+      variant="contained"
+      color="primary"
+      className="searchBox__button"
+      onClick={() => props.clickSearch()}>
       Search
     </Button>
   </div>
